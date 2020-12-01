@@ -1,0 +1,9 @@
+#use this if you want to use fast-cgi with nginx ingress
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wordpress-configmap
+data:
+  SCRIPT_FILENAME: "/var/www/html/index.php"
+  FASTCGI_PASS : "wordpress:9000"
+  fastcgi_pass: "wordpress:9000"
