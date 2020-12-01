@@ -1,0 +1,13 @@
+---
+secretGenerator:
+- name: mysql-pass
+  literals:
+  - password=oZHcUhBsR8VwpSK7sWtp
+resources:
+  - mysql-local-storageclass.yaml
+  - mysql-local-volume.yaml
+  - mysql-deployment.yaml
+  - wordpress-local-storageclass.yaml
+  - wordpress-local-volume.yaml
+  - wordpress-deployment.yaml
+  - wordpress-service.yaml
