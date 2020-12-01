@@ -58,7 +58,22 @@ spec:
         volumeMounts:
         - name: wordpress-persistent-storage
           mountPath: /var/www/html
+      - image: nginx
+        name: nginx
+        imagePullPolicy : IfNotPresent
+        volumeMounts:
+        - name: wordpress-persistent-storage
+          mountPath: /var/www/html
+        - name: nginxconf
+          mountPath: /etc/nginx/conf.d            
+          readOnly: true
       volumes:
       - name: wordpress-persistent-storage
         persistentVolumeClaim:
           claimName: wp-pv-claim
+      - name: nginxconf
+        configMap:
+          defaultMode: 256
+          name: nginxthroughpass
+          optional: false
+        
