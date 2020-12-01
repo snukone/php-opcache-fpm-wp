@@ -10,7 +10,7 @@ spec:
   accessModes:
   - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: mysql-local
+  storageClassName: manual
   local:
     path: /mnt/k8s/mysql
   nodeAffinity:
@@ -20,4 +20,4 @@ spec:
         - key: kubernetes.io/hostname
           operator: In
           values:
-          - vserver1207 
+          - vserver1207
