@@ -13,11 +13,3 @@ spec:
   storageClassName: mysql-local
   local:
     path: /mnt/k8s/mysql
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-      - matchExpressions:
-        - key: kubernetes.io/hostname
-          operator: In
-          values:
-          - vserver1207 

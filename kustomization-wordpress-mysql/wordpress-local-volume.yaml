@@ -13,11 +13,3 @@ spec:
   storageClassName: wordpress-local
   local:
     path: /mnt/k8s/wordpress
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-      - matchExpressions:
-        - key: kubernetes.io/hostname
-          operator: In
-          values:
-          - vserver1207 
