@@ -32,6 +32,10 @@ spec:
         app: wordpress
         tier: frontend
     spec:
+      initContainers:
+      - name: init-mysql
+        image: busybox:1.28
+        command: ['sh', '-c', "until nslookup wordpress-mysql.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for wordpress-mysql; sleep 2; done"]
       containers:
       - image: snukon3/php-opcache-fpm-wp:7.4-5.3.3
         name: wordpress
