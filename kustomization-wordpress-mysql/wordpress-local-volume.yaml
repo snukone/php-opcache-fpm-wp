@@ -5,7 +5,7 @@ metadata:
   name: wordpress 
 spec:
   capacity:
-    storage: 100Gi
+    storage: 50Gi
   volumeMode: Filesystem
   accessModes:
   - ReadWriteOnce
