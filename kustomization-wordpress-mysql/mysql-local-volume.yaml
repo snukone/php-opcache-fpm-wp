@@ -12,7 +12,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: manual
   local:
-    path: /rootfs/mnt/k8s/mysql
+    path: /mnt/k8s/mysql
   nodeAffinity:
     required:
       nodeSelectorTerms:
