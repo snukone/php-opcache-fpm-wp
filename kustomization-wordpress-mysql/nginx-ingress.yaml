@@ -33,4 +33,4 @@ spec:
   tls:
   - hosts:
     - lesetraum.blog
-    secretName: wordpress
+    secretName: lesetraum-blog-tls
