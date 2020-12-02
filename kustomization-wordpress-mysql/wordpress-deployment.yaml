@@ -32,15 +32,6 @@ spec:
         app: wordpress
         tier: frontend
     spec:
-      dnsPolicy: "None"
-      dnsConfig:
-        nameservers:
-          - 10.96.0.10
-        searches:
-          - default.svc.cluster.local
-          - svc.cluster.local
-          - cluster.local
-          - vserver-on.de
       containers:
       - image: snukon3/php-opcache-fpm-wp:7.4-5.3.3
         name: wordpress
