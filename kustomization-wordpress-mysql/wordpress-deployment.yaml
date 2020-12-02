@@ -46,6 +46,8 @@ spec:
           value: tausendbuecher
         - name: WORDPRESS_TABLE_PREFIX
           value: new_
+        - name: WORDPRESS_DB_CHARSET
+          value: latin1
         - name: WORDPRESS_DB_PASSWORD
           valueFrom:
             secretKeyRef:
