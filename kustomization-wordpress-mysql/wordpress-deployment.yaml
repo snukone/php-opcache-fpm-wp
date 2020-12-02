@@ -38,6 +38,10 @@ spec:
         env:
         - name: WORDPRESS_DB_HOST
           value: wordpress-mysql
+        - name: WORDPRESS_DB_NAME
+          value: tausendbuecher
+        - name: WORDPRESS_TABLE_PREFIX
+          value: new_
         - name: WORDPRESS_DB_PASSWORD
           valueFrom:
             secretKeyRef:
