@@ -15,3 +15,13 @@ Die PHP-FPM Einstellungen können mit `php-fpm -tt` überprüft werden.
 
 ## Docker Image ausführen
 `docker run -it <USER>/<IMAGENAME>:<TAG> bash`
+
+## Deployment in Kubernetes Cluster
+
+Im Verzeichnis kustomization-wordpress-mysql befindet sich das kustomization.yaml und alle abhängigen Manifeste. Der Cert-Manager und Nginx-Clusterissuer muss manuell nacheinander installiert werden.
+Beachte zusätzlich die dortige Readme.
+
+Quellen: 
+https://cert-manager.io/docs/installation/kubernetes/
+https://cert-manager.io/docs/tutorials/acme/ingress/
+https://docs.microsoft.com/de-de/azure/aks/ingress-static-ip
