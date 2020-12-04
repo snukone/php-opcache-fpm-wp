@@ -34,7 +34,7 @@ spec:
     spec:
       dnsPolicy: "None"
       dnsConfig:
-      # Options ndots aus herkömmlicher /etc/resolv.conf müssen unbedingt weg!
+      # options ndots:5 aus herkömmlicher /etc/resolv.conf muss unbedingt weg!
         nameservers:
           - 10.43.0.10
         searches:
@@ -63,6 +63,7 @@ spec:
             secretKeyRef:
               name: mysql-pass
               key: password
+        # wird nun angewandt, falls nicht schon eine wp-config.php besteht!
         - name: WORDPRESS_CONFIG_EXTRA
           value: |-
             define('WP_MEMORY_LIMIT', '1024M');
