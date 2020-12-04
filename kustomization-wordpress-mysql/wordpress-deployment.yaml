@@ -55,7 +55,7 @@ spec:
               key: password
         - name: WORDPRESS_CONFIG_EXTRA
           value: |-
-          "define('WP_MEMORY_LIMIT', '1024M');"
+            define('WP_MEMORY_LIMIT', '1024M');
         ports:
         - containerPort: 80
           name: wordpress
