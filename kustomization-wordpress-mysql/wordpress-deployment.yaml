@@ -34,6 +34,7 @@ spec:
     spec:
       dnsPolicy: "None"
       dnsConfig:
+      # Options ndots aus herkömmlicher /etc/resolv.conf müssen unbedingt weg!
         nameservers:
           - 10.43.0.10
         searches:
