@@ -44,8 +44,8 @@ spec:
           - cluster.local
           - vserver-on.de
         options:
-      - name: ndots
-        value: "5"
+          - name: ndots
+            value: "5"
       initContainers:      
       - name: init-mysql
         image: mariadb:5.5.47
