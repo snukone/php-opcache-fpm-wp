@@ -53,7 +53,8 @@ spec:
             secretKeyRef:
               name: mysql-pass
               key: password
-        - WORDPRESS_CONFIG_EXTRA: |
+        - name: WORDPRESS_CONFIG_EXTRA 
+          value: |
           define('WP_MEMORY_LIMIT', '1024M');
         ports:
         - containerPort: 80
