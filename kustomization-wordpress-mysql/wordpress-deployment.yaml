@@ -35,7 +35,7 @@ spec:
       dnsPolicy: "None"
       dnsConfig:
         nameservers:
-          - 10.96.0.10
+          - 10.43.0.10
         searches:
           - default.svc.cluster.local
           - svc.cluster.local
