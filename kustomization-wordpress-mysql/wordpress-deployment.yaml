@@ -32,6 +32,15 @@ spec:
         app: wordpress
         tier: frontend
     spec:
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+          - 10.96.0.10
+        searches:
+          - default.svc.cluster.local
+          - svc.cluster.local
+          - cluster.local
+          - vserver-on.de
       initContainers:      
       - name: init-mysql
         image: mariadb:5.5.47
