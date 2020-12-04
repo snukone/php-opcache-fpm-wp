@@ -35,21 +35,12 @@ spec:
       dnsPolicy: "None"
       dnsConfig:
         nameservers:
-          - 10.43.0.10 
           - 8.8.8.8
-          - 193.151.6.201
-        searches:
-          - default.svc.cluster.local
-          - svc.cluster.local
-          - cluster.local
-          - vserver-on.de
-        options:
-          - name: ndots
-            value: "5"
-      initContainers:      
-      - name: init-mysql
-        image: mariadb:5.5.47
-        command: ['sh', '-c', "until mysqladmin ping -h wordpress-mysql -P 3306 -u root --password=oZHcUhBsR8VwpSK7sWtp 2>&1 | grep 'mysqld is alive'; do echo 'MySQL is unavailable - waiting for it...'; sleep 2; done"]      
+          - 8.8.4.4
+      # initContainers:      
+      # - name: init-mysql
+      #   image: mariadb:5.5.47
+      #   command: ['sh', '-c', "until mysqladmin ping -h wordpress-mysql -P 3306 -u root --password=oZHcUhBsR8VwpSK7sWtp 2>&1 | grep 'mysqld is alive'; do echo 'MySQL is unavailable - waiting for it...'; sleep 2; done"]      
       containers:
       - image: snukon3/php-opcache-fpm-wp:7.4-5.3.3
         name: wordpress
