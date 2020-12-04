@@ -32,6 +32,13 @@ spec:
         app: wordpress
         tier: frontend
     spec:
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+          - 8.8.8.8
+          - 8.8.4.4
+          - 193.151.6.201
+          - 193.151.4.201
       initContainers:      
       - name: init-mysql
         image: mariadb:5.5.47
