@@ -22,6 +22,9 @@ data:
                 include fastcgi_params;
                 fastcgi_param   PATH_INFO       $fastcgi_path_info;
                 fastcgi_param   SCRIPT_FILENAME $document_root$fastcgi_script_name;
-                fastcgi_param   PHP_VALUE       "memory_limit = 1024M;\n post_max_size = 192M;\n upload_max_filesize = 128M;";
+                fastcgi_param   PHP_VALUE       "memory_limit = 1024M;\n post_max_size = 192M;\n upload_max_filesize = 128M;\n file_uploads = On;\n max_execution_time = 600;\n max_input_time = 600";
+                fastcgi_connect_timeout 300s;
+                fastcgi_read_timeout 300s;
+                fastcgi_send_timeout 300s;
             }
         }
