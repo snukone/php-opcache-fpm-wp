@@ -10,6 +10,8 @@ Getestet werden können die OPCache Einstellungen mit `php-fpm -i` im gebauten C
 
 Die PHP-FPM Einstellungen können mit `php-fpm -tt` überprüft werden.
 
+Anzeigen der Commandline Settings für PHP über `php --ini`.
+
 ## Docker Image bauen
 `docker build -t <USER>/<IMAGENAME>:<TAG> .`
 
