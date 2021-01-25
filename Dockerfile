@@ -1,4 +1,4 @@
-FROM wordpress:5.5.3-php7.4-fpm
+FROM wordpress:5.6.0-php7.4-fpm
 
 # Delete recommended OPCache settings from https://secure.php.net/manual/en/opcache.installation.php
 RUN rm -f /usr/local/etc/php/conf.d/opcache-recommended.ini

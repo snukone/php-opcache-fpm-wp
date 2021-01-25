@@ -16,6 +16,9 @@ Die PHP-FPM Einstellungen können mit `php-fpm -tt` überprüft werden.
 ## Docker Image ausführen
 `docker run -it <USER>/<IMAGENAME>:<TAG> bash`
 
+## Docker Image pushen
+`docker push <USER>/<IMAGENAME>:<TAG>`
+
 ## Deployment in Kubernetes Cluster
 
 Im Verzeichnis kustomization-wordpress-mysql befindet sich das kustomization.yaml und alle abhängigen Manifeste. Der Cert-Manager und Nginx-Clusterissuer muss manuell nacheinander installiert werden.

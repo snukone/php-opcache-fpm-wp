@@ -10,6 +10,7 @@ data:
             root /var/www/html;
             server_name  _;
             index index.php;
+            client_max_body_size 128m;
             location / {
                 try_files $uri $uri/ /index.php?$args;
             }

@@ -1,4 +1,4 @@
-Für Cert-Manager ist unbedingt eine dnsPolicy notwenidg!
+Für Cert-Manager ist unbedingt eine dnsPolicy notwendig!
 
 Für Lets-Encrypt muss unbedingt letsencrypt-prod verwendet werden um kein Fake Zertifikat zu erhalten!
 
