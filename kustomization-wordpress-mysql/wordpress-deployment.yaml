@@ -83,7 +83,7 @@ spec:
         - name: wordpress-persistent-storage
           mountPath: /var/www/html
         - name: nginxconf
-          mountPath: /etc/nginx/conf.d            
+          mountPath: /etc/nginx/conf.d
           readOnly: true
       volumes:
       - name: wordpress-persistent-storage
