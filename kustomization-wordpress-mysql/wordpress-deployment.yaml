@@ -67,8 +67,8 @@ spec:
         - name: WORDPRESS_CONFIG_EXTRA
           value: |-
             define('WP_MEMORY_LIMIT', '1024M');
-            @ini_set('upload_max_size', '192M');
-            @ini_set('post_max_size', '64M');
+            @ini_set('upload_max_size', '128M');
+            @ini_set('post_max_size', '192M');
             @ini_set('memory_limit', '1024M');
         ports:
         - containerPort: 80
