@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: nginxthroughpass
+  name: tigerlilly-nginxthroughpass
 data:
   default.conf: |-
     server {

@@ -88,5 +88,5 @@ spec:
       - name: nginxconf
         configMap:
           defaultMode: 256
-          name: nginxthroughpass
+          name: tigerlilly-nginxthroughpass
           optional: false
