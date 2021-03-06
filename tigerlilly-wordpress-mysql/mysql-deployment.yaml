@@ -1,0 +1,68 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tigerlilly-mysql
+  labels:
+    app: tigerlilly
+spec:
+  ports:
+    - port: 3306
+  selector:
+    app: tigerlilly
+    tier: mysql
+  clusterIP: None
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: tigerlilly-mysql-pv-claim
+  labels:
+    app: tigerlilly
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+---
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: tigerlilly-mysql
+  labels:
+    app: tigerlilly
+spec:
+  selector:
+    matchLabels:
+      app: tigerlilly
+      tier: mysql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: tigerlilly
+        tier: mysql
+    spec:
+      containers:
+      - image: mariadb:5.5.47
+        name: mysql
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: tigerlilly-mysql-pass
+              key: password
+        ports:
+        - containerPort: 3306
+          name: mysql
+        volumeMounts:
+        - name: tigerlilly-mysql-persistent-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: tigerlilly-mysql-persistent-storage
+        persistentVolumeClaim:
+          claimName: tigerlilly-mysql-pv-claim
+

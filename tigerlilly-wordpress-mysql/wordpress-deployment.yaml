@@ -1,0 +1,92 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: tigerlilly-pv-claim
+  labels:
+    app: tigerlilly
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 50Gi
+---
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: tigerlilly
+  labels:
+    app: tigerlilly
+spec:
+  selector:
+    matchLabels:
+      app: tigerlilly
+      tier: frontend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: tigerlilly
+        tier: frontend
+    spec:
+      dnsPolicy: "None"
+      dnsConfig:
+      # options ndots:5 aus herkömmlicher /etc/resolv.conf muss unbedingt weg!
+        nameservers:
+          - 10.43.0.10
+        searches:
+          - default.svc.cluster.local
+          - svc.cluster.local
+          - cluster.local
+          - vserver-on.de
+      initContainers:      
+      - name: init-mysql
+        image: mariadb:5.5.47
+        command: ['sh', '-c', "until mysqladmin ping -h tigerlilly-mysql -P 3306 -u root --password=oZHcUhBsR8VwpSK7sWtp 2>&1 | grep 'mysqld is alive'; do echo 'MySQL is unavailable - waiting for it...'; sleep 2; done"]      
+      containers:
+      - image: snukon3/php-opcache-fpm-wp:7.4-5.6.0
+        name: tigerlilly
+        env:
+        - name: WORDPRESS_DB_HOST
+          value: tigerlilly-mysql
+        - name: WORDPRESS_DB_NAME
+          value: tigerlilly
+        - name: WORDPRESS_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: tigerlilly-mysql-pass
+              key: password
+        # wird nun angewandt, falls nicht schon eine wp-config.php besteht!
+        - name: WORDPRESS_CONFIG_EXTRA
+          value: |-
+            define('WP_MEMORY_LIMIT', '1024M');
+            @ini_set('upload_max_size', '128M');
+            @ini_set('post_max_size', '192M');
+            @ini_set('memory_limit', '1024M');
+        ports:
+        - containerPort: 80
+          name: wordpress
+        volumeMounts:
+        - name: tigerlilly-persistent-storage
+          mountPath: /var/www/html
+      - image: nginx
+        name: nginx
+        imagePullPolicy : IfNotPresent
+        volumeMounts:
+        - name: tigerlilly-persistent-storage
+          mountPath: /var/www/html
+        - name: nginxconf
+          mountPath: /etc/nginx/conf.d
+          readOnly: true
+      volumes:
+      - name: tigerlilly-persistent-storage
+        persistentVolumeClaim:
+          claimName: tigerlilly-pv-claim
+      - name: nginxconf
+        configMap:
+          defaultMode: 256
+          name: nginxthroughpass
+          optional: false
